@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.25s ease-out;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+/* table: সব ঘরে সমান padding (typography-র প্রথম/শেষ column-এর 0 padding ঠেকাতে) */
+.prose :is(th, td) {
+  padding: 0.6rem 1rem !important;
+}
+
+.prose thead th {
+  background: rgb(255 255 255 / 0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  text-align: left;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
