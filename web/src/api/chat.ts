@@ -1,4 +1,5 @@
 import type { Role } from "../types/types";
+import { API_BASE_URL } from "./baseUrl";
 
 type ApiMessage = { role: Role; content: string };
 
@@ -6,7 +7,7 @@ export async function sendChat(
   messages: ApiMessage[],
   model?: string
 ): Promise<{ reply: string; model: string }> {
-  const res = await fetch("/api/chat", {
+  const res = await fetch(`${API_BASE_URL}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ messages, model }),

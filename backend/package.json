@@ -12,7 +12,8 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
-    "dev:server": "tsx watch index.ts",
+    "build": "npm run typecheck",
+    "dev:server": "tsx watch dev.ts",
     "typecheck": "tsc"
   }
 }
