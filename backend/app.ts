@@ -21,7 +21,6 @@ app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
     return res.sendStatus(origin && !allowedOrigins.includes(origin) ? 403 : 204);
   }
-
   next();
 });
 
