@@ -136,6 +136,13 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json({ limit: "1mb" }));
+app.get("/", (_req, res) => {
+  res.json({
+    name: "Persona Chat Bot API",
+    status: "ok",
+    health: "/api/health"
+  });
+});
 app.use("/api", routers_default);
 var app_default = app;
 

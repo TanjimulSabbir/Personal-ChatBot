@@ -26,6 +26,14 @@ app.use((req, res, next) => {
 
 app.use(express.json({ limit: "1mb" }));
 
-app.use("/api", router)
+app.get("/", (_req, res) => {
+  res.json({
+    name: "Persona Chat Bot API",
+    status: "ok",
+    health: "/api/health",
+  });
+});
+
+app.use("/api", router);
 
 export default app;
