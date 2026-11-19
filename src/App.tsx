@@ -33,6 +33,7 @@ export default function App() {
   const [sidebarHidden, setSidebarHidden] = useState(false);
   const [search, setSearch] = useState("");
   const [modelOpen, setModelOpen] = useState(false);
+  const [creatorOpen, setCreatorOpen] = useState(true);
   const [menuId, setMenuId] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -172,7 +173,36 @@ export default function App() {
         </div>
         <div className="sidebar-bottom">
           <div className="plan-card"><div className="plan-icon">✦</div><div><strong>Your AI workspace</strong><p>A little space for big ideas.</p></div></div>
-          <div className="profile-row"><div className="avatar">S</div><div className="profile-copy"><strong>Personal workspace</strong><span>Local guest session</span></div><span className="profile-more">···</span></div>
+          <section className="creator-card" aria-labelledby="creator-heading">
+            <h2 className="creator-heading">
+              <button
+                id="creator-heading"
+                className="creator-toggle"
+                type="button"
+                aria-expanded={creatorOpen}
+                aria-controls="creator-details"
+                onClick={() => setCreatorOpen((open) => !open)}
+              >
+                ABOUT THE CREATOR
+                <svg className="creator-toggle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+              </button>
+            </h2>
+            <div id="creator-details" className="creator-details" hidden={!creatorOpen}>
+              <div className="creator-intro">
+                <img className="creator-avatar" src="https://avatars.githubusercontent.com/u/86679380?v=4" alt="Tanjimul Islam Sabbir" />
+                <div className="creator-copy">
+                  <strong>Tanjimul Islam Sabbir</strong>
+                  <span>Full-stack Software Engineer</span>
+                </div>
+              </div>
+              <p>Building scalable web apps with React, TypeScript, and Node.js.</p>
+              <a className="creator-link" href="https://github.com/TanjimulSabbir" target="_blank" rel="noreferrer">
+                GitHub profile <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </section>
         </div>
       </aside>
 
@@ -181,7 +211,7 @@ export default function App() {
           <div className="topbar-left"><button className="icon-button sidebar-toggle" onClick={toggleSidebar} aria-label="Toggle sidebar">{sidebarOpen ? "‹" : "☰"}</button><div className="breadcrumb"><span>Workspace</span><b>/</b><strong>{active?.title ?? "New chat"}</strong></div></div>
           <div className="topbar-actions">
             <div ref={modelRef} className="model-wrap">
-              <button className="model-button" onClick={() => setModelOpen(!modelOpen)}><span className="status-dot"/><span>{models.find((m) => m.id === selected)?.name ?? (modelError ? "Model unavailable" : "Loading models…")}</span><span className="chevron">⌄</span></button>
+              <button className="model-button" aria-expanded={modelOpen} onClick={() => setModelOpen(!modelOpen)}><span className="status-dot"/><span>{models.find((m) => m.id === selected)?.name ?? (modelError ? "Model unavailable" : "Loading models…")}</span><svg className="chevron" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m7 10 5 5 5-5"/></svg></button>
               {modelOpen && <div className="model-dropdown"><div className="dropdown-label">SELECT MODEL</div>{models.map((m) => <button key={m.id} className={selected === m.id ? "model-option selected" : "model-option"} onClick={() => { select(m.id); setModelOpen(false); }}><span><strong>{m.name}</strong><small>{m.id}</small></span>{selected === m.id && <span>✓</span>}</button>)}{modelError && <p className="model-error">{modelError}</p>}</div>}
             </div>
             <button className="top-new-chat" onClick={newChat}><span>＋</span><span className="top-new-label">New chat</span></button>
