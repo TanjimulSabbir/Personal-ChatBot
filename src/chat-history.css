@@ -1,0 +1,61 @@
+.history-search {
+  height: 36px;
+  border-radius: 8px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.history-search:focus-within {
+  border-color: #685682;
+  box-shadow: 0 0 0 3px #aa8bd011;
+}
+
+.history-search-clear {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #92919b;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.history-search-clear:hover {
+  background: #34343d;
+  color: #fff;
+}
+
+.session-icon {
+  width: 28px;
+  height: 28px;
+  flex-basis: 28px;
+  border-radius: 8px;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.session-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.session-wrap:hover .session-icon {
+  border-color: #514365;
+  background: #302a39;
+}
+
+.session-selected .session-icon {
+  border-color: #685682;
+  background: #3a3047;
+  color: #d4b8f1;
+}
+
+.session-item:focus-visible,
+.session-more:focus-visible,
+.history-search-clear:focus-visible {
+  outline: 2px solid #b598d8;
+  outline-offset: 2px;
+}
