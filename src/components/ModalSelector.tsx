@@ -37,7 +37,7 @@ export default function ModelSelector({ models, selected, onSelect, error }: Pro
     return <div className="h-9 w-36 animate-pulse rounded-lg bg-white/5" />;
   }
 
-  const current = models.find((m) => m.id === selected);
+  const current = models?.find((m) => m.id === selected);
 
   return (
     <div ref={ref} className="relative">
