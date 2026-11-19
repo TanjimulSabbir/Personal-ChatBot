@@ -26,7 +26,7 @@ export function useModels() {
 
         // আগে সংরক্ষিত পছন্দ, না থাকলে server-এর ডিফল্ট, না থাকলে প্রথমটা
         const pick =
-          [saved, def].find(
+          [saved, def]?.find(
             (id): id is string => !!id && models.some((m) => m.id === id)
           ) ??
           models[0]?.id ??

@@ -38,7 +38,7 @@ export default function App() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
-  const active = sessions.find((s) => s.id === activeId) ?? null;
+  const active = sessions?.find((s) => s.id === activeId) ?? null;
   const messages = active?.messages ?? [];
 
   useEffect(() => {
